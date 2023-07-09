@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+        environment {
+        TEST_IP = sh(script: "aws ec2 describe-instances --region eu-central-1 --filters Name=tag:tagas,Values=test --query 'Reservations[].Instances[].PublicIpAddress' --output text", returnStdout: true).trim()
+        PROD_IP = sh(script: "aws ec2 describe-instances --region eu-central-1 --filters Name=tag:tagas,Values=prod --query 'Reservations[].Instances[].PublicIpAddress' --output text", returnStdout: true).trim()
+    }
+    triggers {
+        pollSCM('*/1 * * * *')
+    }
+    stages {
+        stage('Cleanup') {
+            steps {
+                sh 'echo "Performing cleanup..."'
+                sh 'rm -rf *'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo "Cloning repository..."'
+                sh 'git clone https://github.com/Orelbaz/flask-docker.git'
+                sh 'ls'
+                sh 'echo "Dockring..."'
+                dir('/var/lib/jenkins/workspace/docker-pipeline/flask-docker/alpaca-flask') {
+                sh 'pwd'
+                sh 'docker build -t orelbaz/flak-docker:1.0 .'
+                sh 'echo "Pushing to DockerHub"'
+                sh 'docker push orelbaz/flak-docker:1.0'
+                }
+            }
+        }
+        stage('Test-server') {
+            steps {
+                script {
+                    sh """ 
+                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/or.pem ec2-user@${TEST_IP} '
+                    sudo yum install docker -y
+                    sudo systemctl enable docker
+                    sudo systemctl start docker
+                    sudo docker pull orelbaz/flak-docker:1.0
+                    sudo docker stop \$(sudo docker ps -aq)
+                    sudo docker rm \$(sudo docker ps -aq)
+                    sudo docker run -d -p 5000:5000 orelbaz/flak-docker:1.0
+                    '
+                    """
+                    sh 'echo "Running tests..."'
+                    sh '/bin/bash "/var/lib/jenkins/workspace/docker-pipeline/flask-docker/Testing.sh"'
+               } 
+            }
+        }
+        stage ('Aprove') {
+            steps {
+                sh 'echo "Waiting for aproval..."'
+                // For auto aproval add '//' before input line, for manual aproval remove '//' from input line
+                input 'Do you want to deploy project to production?'
+            }
+        }
+        stage('Prod-server') {
+            steps {
+                script {
+                    sh """ 
+                    ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/or.pem ec2-user@${PROD_IP} '
+                    sudo yum install docker -y
+                    sudo systemctl enable docker
+                    sudo systemctl start docker
+                    sudo docker pull orelbaz/flak-docker:1.0
+                    sudo docker stop \$(sudo docker ps -aq)
+                    sudo docker rm \$(sudo docker ps -aq)
+                    sudo docker run -d -p 5000:5000 orelbaz/flak-docker:1.0
+                    '
+                    """
+                }
+            }
+        }
+    }
+}
