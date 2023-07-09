@@ -5,7 +5,7 @@ from redis import Redis
 app = Flask(__name__)
 redis = Redis(host='redis', port=6379)
 
-API_KEY = "YOUR_ALPHA_VANTAGE_API_KEY"
+API_KEY = "NX6VLQOK2DEROL37"
 
 coins = [
     {'name': 'Tesla', 'symbol': 'TSLA', 'worth': ''},
