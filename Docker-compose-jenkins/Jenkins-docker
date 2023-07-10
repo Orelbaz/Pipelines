@@ -18,7 +18,7 @@ pipeline {
                 sh 'git clone https://github.com/Orelbaz/Jenkins.git'
                 sh 'ls'
                 sh 'echo "Dockring..."'
-                dir('/var/lib/jenkins/workspace/docker-pipeline/Jenkins/CoinSite') {
+                dir('/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/CoinSite') {
                     script {
                         // Extract the TAG variable from .env file
                         TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
