@@ -31,9 +31,9 @@ pipeline {
         }
         stage('Test-server') {
             steps {
-                    sh "/bin/bash /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
+                    sh "/bin/bash -x /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
                     sh 'echo "Running tests..."'
-                    sh '/bin/bash "/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
+                    sh '/bin/bash -x "/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
             }
         }
         stage ('Aprove') {
