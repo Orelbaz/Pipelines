@@ -31,8 +31,7 @@ pipeline {
                     aws s3 cp s3://jenkins-test-or1/Ansible-jenkins.tar.gz /home/ec2-user/Ansible-jenkins.tar.gz
                     tar -xvf /home/ec2-user/Ansible-jenkins.tar.gz
                     rm -r Ansible-jenkins.tar.gz
-                    pwd
-                    /bin/bash ./home/ec2-user/Jenkins/Ansible-jenkins/deploy_script.sh
+                    /bin/bash ./Jenkins/Ansible-jenkins/deploy_script.sh
                     '
                     """
                     sh 'echo "Running tests..."'
