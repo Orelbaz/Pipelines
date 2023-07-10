@@ -32,7 +32,7 @@ pipeline {
                     tar -xvf /home/ec2-user/Ansible-jenkins.tar.gz
                     rm -r Ansible-jenkins.tar.gz
                     pwd
-                    /bin/bash ./home/ec2-user/Ansible-jenkins/deploy_script.sh
+                    /bin/bash ./home/ec2-user/Jenkins/Ansible-jenkins/deploy_script.sh
                     '
                     """
                     sh 'echo "Running tests..."'
