@@ -28,14 +28,14 @@ pipeline {
                 script {
                     sh """ 
                     ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/or.pem ec2-user@${TEST_IP} ' 
-                    aws s3 cp s3://jenkins-test-or1/jenkins.tar.gz /home/ec2-user/jenkins.tar.gz
+                    aws s3 cp s3://jenkins-test-or1/Ansible-jenkins.tar.gz /home/ec2-user/Ansible-jenkins.tar.gz
                     tar -xvf /home/ec2-user/Jenkins/Ansible-jenkins.tar.gz
                     rm -r Ansible-jenkins.tar.gz
                     /bin/bash ./Ansible-jenkins/deploy_script.sh
                     '
                     """
                     sh 'echo "Running tests..."'
-                    sh '/bin/bash "/var/lib/jenkins/workspace/second-pipeline/jenkins-test/Testing.sh"'
+                    sh '/bin/bash "/var/lib/jenkins/workspace/Ansible-pipeline/Jenkins/Ansible-jenkins/Testing.sh"'
                } 
             }
         }
