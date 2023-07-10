@@ -18,7 +18,7 @@ pipeline {
                 sh 'ls'
                 sh 'echo "Packaging..."'
                 sh 'pwd'
-                sh 'tar -czvf Jenkins/Ansible-jenkins.tar.gz Ansible-jenkins'
+                sh 'tar -czvf Jenkins/Ansible-jenkins.tar.gz /Jenkins/Ansible-jenkins'
                 sh 'echo "Pushing to S3..."'
                 sh 'aws s3 cp jenkins.tar.gz s3://jenkins-test-or1'
             }
