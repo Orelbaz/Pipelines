@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Cloning repository..."'
-                sh 'git clone https://github.com/Orelbaz/jenkins-test.git'
+                sh 'git clone https://github.com/Orelbaz/Jenkins.git'
                 sh 'ls'
                 sh 'echo "Packaging..."'
                 sh 'tar -czvf jenkins.tar.gz jenkins-test'
