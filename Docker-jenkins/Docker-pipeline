@@ -17,14 +17,14 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Cloning repository..."'
-                sh 'git clone https://github.com/Orelbaz/flask-docker.git'
+                sh 'git clone https://github.com/Orelbaz/Jenkins.git'
                 sh 'ls'
                 sh 'echo "Dockring..."'
-                dir('/var/lib/jenkins/workspace/docker-pipeline/flask-docker/alpaca-flask') {
+                dir('/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-jenkins/alpaca-flask') {
                 sh 'pwd'
-                sh 'docker build -t orelbaz/flak-docker:1.0 .'
+                sh 'docker build -t orelbaz/flask-docker:1.0 .'
                 sh 'echo "Pushing to DockerHub"'
-                sh 'docker push orelbaz/flak-docker:1.0'
+                sh 'docker push orelbaz/flask-docker:1.0'
                 }
             }
         }
@@ -36,14 +36,14 @@ pipeline {
                     sudo yum install docker -y
                     sudo systemctl enable docker
                     sudo systemctl start docker
-                    sudo docker pull orelbaz/flak-docker:1.0
+                    sudo docker pull orelbaz/flask-docker:1.0
                     sudo docker stop \$(sudo docker ps -aq)
                     sudo docker rm \$(sudo docker ps -aq)
-                    sudo docker run -d -p 5000:5000 orelbaz/flak-docker:1.0
+                    sudo docker run -d -p 5000:5000 orelbaz/flask-docker:1.0
                     '
                     """
                     sh 'echo "Running tests..."'
-                    sh '/bin/bash "/var/lib/jenkins/workspace/docker-pipeline/flask-docker/Testing.sh"'
+                    sh '/bin/bash "/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-jenkins/Testing.sh"'
                } 
             }
         }
@@ -62,10 +62,10 @@ pipeline {
                     sudo yum install docker -y
                     sudo systemctl enable docker
                     sudo systemctl start docker
-                    sudo docker pull orelbaz/flak-docker:1.0
+                    sudo docker pull orelbaz/flask-docker:1.0
                     sudo docker stop \$(sudo docker ps -aq)
                     sudo docker rm \$(sudo docker ps -aq)
-                    sudo docker run -d -p 5000:5000 orelbaz/flak-docker:1.0
+                    sudo docker run -d -p 5000:5000 orelbaz/flask-docker:1.0
                     '
                     """
                 }
