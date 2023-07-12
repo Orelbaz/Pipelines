@@ -10,10 +10,7 @@ coins = [
     {'name': 'Amazon', 'symbol': 'AMZN', 'worth': ''},
     {'name': 'Apple', 'symbol': 'AAPL', 'worth': ''},
     {'name': 'Microsoft', 'symbol': 'MSFT', 'worth': ''},
-    {'name': 'Google', 'symbol': 'GOOGL', 'worth': ''},
-    {'name': 'Facebook', 'symbol': 'FB', 'worth': ''},
-    {'name': 'Netflix', 'symbol': 'NFLX', 'worth': ''},
-    {'name': 'Adobe', 'symbol': 'ADBE', 'worth': ''}
+    {'name': 'Google', 'symbol': 'GOOGL', 'worth': ''}
 ]
 
 
