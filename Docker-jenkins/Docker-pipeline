@@ -22,9 +22,9 @@ pipeline {
                 sh 'echo "Dockring..."'
                 dir('/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-jenkins/alpaca-flask') {
                 sh 'pwd'
-                sh 'docker build -t orelbaz/flask-docker:1.0 .'
+                sh 'docker build -t orelbaz/alpacaflask-docker:1.0 .'
                 sh 'echo "Pushing to DockerHub"'
-                sh 'docker push orelbaz/flask-docker:1.0'
+                sh 'docker push orelbaz/alpacaflask-docker:1.0'
                 }
             }
         }
@@ -36,10 +36,10 @@ pipeline {
                     sudo yum install docker -y
                     sudo systemctl enable docker
                     sudo systemctl start docker
-                    sudo docker pull orelbaz/flask-docker:1.0
+                    sudo docker pull orelbaz/alpacaflask-docker:1.0
                     sudo docker stop \$(sudo docker ps -aq)
                     sudo docker rm \$(sudo docker ps -aq)
-                    sudo docker run -d -p 5000:5000 orelbaz/flask-docker:1.0
+                    sudo docker run -d -p 5000:5000 orelbaz/alpacaflask-docker:1.0
                     '
                     """
                     sh 'echo "Running tests..."'
@@ -62,10 +62,10 @@ pipeline {
                     sudo yum install docker -y
                     sudo systemctl enable docker
                     sudo systemctl start docker
-                    sudo docker pull orelbaz/flask-docker:1.0
+                    sudo docker pull orelbaz/alpacaflask-docker:1.0
                     sudo docker stop \$(sudo docker ps -aq)
                     sudo docker rm \$(sudo docker ps -aq)
-                    sudo docker run -d -p 5000:5000 orelbaz/flask-docker:1.0
+                    sudo docker run -d -p 5000:5000 orelbaz/alpacaflask-docker:1.0
                     '
                     """
                 }
