@@ -4,8 +4,8 @@ INSTANCE_IP=$1
 TAG=$2
 
 echo 'Copying docker-compose.yml + .env to instance...'
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /var/lib/jenkins/or.pem /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/CoinSite/docker-compose.yml ec2-user@${INSTANCE_IP}:/home/ec2-user
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /var/lib/jenkins/or.pem /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/CoinSite/.env ec2-user@${INSTANCE_IP}:/home/ec2-user
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /var/lib/jenkins/or.pem /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/CoinSite/docker-compose.yml ec2-user@${INSTANCE_IP}:/home/ec2-user
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /var/lib/jenkins/or.pem /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/CoinSite/.env ec2-user@${INSTANCE_IP}:/home/ec2-user
 
 echo 'Connecting to test-server...'
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /var/lib/jenkins/or.pem ec2-user@${INSTANCE_IP} "

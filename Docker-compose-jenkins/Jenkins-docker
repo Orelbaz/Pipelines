@@ -18,7 +18,7 @@ pipeline {
                 sh 'git clone https://github.com/Orelbaz/Jenkins.git'
                 sh 'ls'
                 sh 'echo "Dockring..."'
-                dir('/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/CoinSite') {
+                dir('/var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/CoinSite') {
                     script {
                         // Extract the TAG variable from .env file
                         TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
@@ -31,9 +31,9 @@ pipeline {
         }
         stage('Test-server') {
             steps {
-                    sh "/bin/bash -x /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
+                    sh "/bin/bash -x /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
                     sh 'echo "Running tests..."'
-                    sh '/bin/bash -x "/var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
+                    sh '/bin/bash -x "/var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
             }
         }
         stage ('Aprove') {
@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Prod-server') {
             steps { 
-                sh '/bin/bash /var/lib/jenkins/workspace/docker-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${PROD_IP} ${TAG}'
+                sh '/bin/bash /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${PROD_IP} ${TAG}'
             }
         }
     }
