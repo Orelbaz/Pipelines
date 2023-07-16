@@ -19,7 +19,6 @@ sudo systemctl start docker
 sudo docker stop \$(sudo docker ps -aq)
 sudo docker rm \$(sudo docker ps -aq)
 sudo docker rmi \$(sudo docker images -q orelbaz/coinsite)
-sudo docker pull orelbaz/coinsite:${TAG}
 cd /home/ec2-user
 sudo docker-compose up -d
 "
