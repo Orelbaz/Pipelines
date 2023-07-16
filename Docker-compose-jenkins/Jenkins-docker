@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    environment {
+        environment {
         TEST_IP = sh(script: "aws ec2 describe-instances --region eu-central-1 --filters Name=tag:tagas,Values=test --query 'Reservations[].Instances[].PublicIpAddress' --output text", returnStdout: true).trim()
         PROD_IP = sh(script: "aws ec2 describe-instances --region eu-central-1 --filters Name=tag:tagas,Values=prod --query 'Reservations[].Instances[].PublicIpAddress' --output text", returnStdout: true).trim()
     }
     stages {
         stage('Cleanup') {
             steps {
-                // Cleanup
+                //cleanup
                 sh 'rm -rf *'
                 sh 'docker rmi $(docker images -q orelbaz/coinsite)'
             }
@@ -31,22 +31,21 @@ pipeline {
         }
         stage('Test-server') {
             steps {
-                sh "/bin/bash -x /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
-                sh 'echo "Running tests..."'
-                sh '/bin/bash -x "/var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
+                    sh "/bin/bash -x /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${TEST_IP} ${TAG}"
+                    sh 'echo "Running tests..."'
+                    sh '/bin/bash -x "/var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/Testing.sh"'
             }
         }
-        stage('Approve') {
+        stage ('Aprove') {
             steps {
-                sh 'echo "Waiting for approval..."'
-                // For auto approval, add '//' before the input line.
-                // For manual approval, remove '//' from the input line.
-                input 'Do you want to deploy the project to production?'
+                sh 'echo "Waiting for aproval..."'
+                // For auto aproval add '//' before input line, for manual aproval remove '//' from input line
+                input 'Do you want to deploy project to production?'
             }
         }
         stage('Prod-server') {
-            steps {
-                sh "/bin/bash /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${PROD_IP} ${TAG}"
+            steps { 
+                sh '/bin/bash /var/lib/jenkins/workspace/Docker-compose-pipeline/Jenkins/Docker-compose-jenkins/deploy.sh ${PROD_IP} ${TAG}'
             }
         }
     }
