@@ -22,4 +22,3 @@ sudo docker rmi \$(sudo docker images -q orelbaz/coinsite)
 cd /home/ec2-user
 sudo docker-compose up -d
 "
-{{}}

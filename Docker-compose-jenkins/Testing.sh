@@ -9,4 +9,3 @@ else
     echo "Flask app returned a non-200 status code: $response. Test failed!"
     exit 1
 fi
-{{}}
