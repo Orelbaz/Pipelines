@@ -38,7 +38,7 @@ pipeline {
         }
         stage ('Aprove') {
             steps {
-                sh 'echo "Waiting for aproval..."'
+                sh 'echo "Waiting for aproval.."'
                 // For auto aproval add '//' before input line, for manual aproval remove '//' from input line
                 input 'Do you want to deploy project to production?'
             }
