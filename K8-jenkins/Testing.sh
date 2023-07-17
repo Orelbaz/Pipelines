@@ -21,8 +21,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo systemctl enable docker
 sudo systemctl start docker
 cd /tmp
-# sudo docker-compose down
-# sudo docker rmi \$(sudo docker images -q orelbaz/coinsitek8)
+sudo docker-compose down
+sudo docker rmi \$(sudo docker images -q orelbaz/coinsitek8)
 sudo docker-compose up -d
 "
 
