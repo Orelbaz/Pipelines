@@ -22,8 +22,8 @@ pipeline {
                         // Extract the TAG variable from .env file
                         TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
                         // Build and push the Docker image....
-                        sh "docker build --build-arg TAG=${TAG} -t orelbaz/coinsiteK8:${TAG} ."
-                        sh "docker push orelbaz/coinsiteK8:${TAG}"
+                        sh "docker build --build-arg TAG=${TAG} -t orelbaz/coinsitek8:${TAG} ."
+                        sh "docker push orelbaz/coinsitek8:${TAG}"
                     }
                 }
             }
