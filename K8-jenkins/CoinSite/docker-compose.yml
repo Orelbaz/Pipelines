@@ -10,7 +10,7 @@ services:
       - .env
 
   flask:
-    image: orelbaz/coinsiteK8:${TAG}
+    image: orelbaz/coinsitek8:${TAG}
     container_name: flask
     restart: always
     ports:
