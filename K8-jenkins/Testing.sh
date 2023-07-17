@@ -7,8 +7,8 @@ ZONE="us-central1-c"
 
 
 echo 'Copying docker-compose.yml + .env to instance...'
-gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/docker-compose.yml $INSTANCE_NAME:/home/ec2-user/docker-compose.yml --project=$PROJECT_ID --zone=$ZONE
-gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/.env $INSTANCE_NAME:/home/ec2-user/.env --project=$PROJECT_ID --zone=$ZONE
+gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/docker-compose.yml $INSTANCE_NAME:/home/ec2-user/ --project=$PROJECT_ID --zone=$ZONE
+gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/.env $INSTANCE_NAME:/home/ec2-user/ --project=$PROJECT_ID --zone=$ZONE
 
 
 gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE $INSTANCE_NAME \
