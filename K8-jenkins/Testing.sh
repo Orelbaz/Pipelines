@@ -15,8 +15,8 @@ gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE $INSTANCE_NAME \
 --ssh-flag="-o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no" \
 --command "
 
-sudo yum update -y
-sudo yum install docker -y
+sudo apt update -y
+sudo apt install docker -y
 sudo curl -L 'https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo systemctl enable docker
