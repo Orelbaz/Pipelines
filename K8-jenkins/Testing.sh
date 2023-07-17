@@ -25,7 +25,7 @@ cd /home/ec2-user
 sudo docker-compose down
 sudo docker rmi \$(sudo docker images -q orelbaz/coinsiteK8)
 sudo docker-compose up -d
-
+"
 
 response=$(curl -s -o /dev/null -w "%{http_code}" ${TEST_IP}:5000)
 
@@ -36,6 +36,3 @@ else
     exit 1
 fi
 
-"
-
-###
