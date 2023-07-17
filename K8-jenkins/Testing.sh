@@ -21,7 +21,7 @@ sudo curl -L 'https://github.com/docker/compose/releases/latest/download/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 sudo systemctl enable docker
 sudo systemctl start docker
-cd /home/ec2-user
+cd /tmp
 sudo docker-compose down
 sudo docker rmi \$(sudo docker images -q orelbaz/coinsiteK8)
 sudo docker-compose up -d
