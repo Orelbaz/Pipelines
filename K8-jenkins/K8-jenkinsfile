@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Prod-server') {
             steps {
-                sh "/bin/bash ${MY_PATH}K8-jenkins/deploy.sh ${TAG}"
+                sh "/bin/bash ${MY_PATH}K8-jenkins/Deploy.sh ${TAG}"
             }
         }
     }
