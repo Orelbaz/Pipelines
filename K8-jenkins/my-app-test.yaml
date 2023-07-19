@@ -23,13 +23,13 @@ spec:
     spec:
       containers:
         - name: flask
-          image: orelbaz/coinsitek8:$(TAG)  # Use the $(TAG) environment variable here
+          image: orelbaz/coinsitek8:${TAG}  # Use the $(TAG) environment variable here
           env:                             # Add this environment variable section
             - name: TAG
               valueFrom:
                 configMapKeyRef:
                   name: flask-config        # Name of the ConfigMap
-                  key: tag                  # Key within the ConfigMap
+                  key: TAG                  # Key within the ConfigMap
           ports:
             - containerPort: 5000
 ---
