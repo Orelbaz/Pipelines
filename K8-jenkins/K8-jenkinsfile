@@ -8,7 +8,7 @@ pipeline {
             steps {
                 //cleanup
                 sh 'rm -rf *'
-                //sh 'docker rmi $(docker images -q orelbaz/coinsiteK8)'
+                sh 'docker rmi $(docker images -q orelbaz/coinsiteK8)'
             }
         }
         stage('Build') {
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Prod-server') {
             steps {
-                sh "/bin/bash -x ${MY_PATH}K8-jenkins/deploy.sh ${TAG}"
+                sh "/bin/bash ${MY_PATH}K8-jenkins/deploy.sh ${TAG}"
             }
         }
     }
