@@ -1,3 +1,4 @@
+# Deployment for the Flask app
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,10 +15,11 @@ spec:
     spec:
       containers:
         - name: flask
-          image: orelbaz/coinsitek8:${TAG}
+          image: orelbaz/coinsitek8:${TAG}  # Use the $(TAG) environment variable here
           ports:
             - containerPort: 5000
 ---
+# Service for the Flask app
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,6 +33,7 @@ spec:
       targetPort: 5000
   type: LoadBalancer
 ---
+# Deployment for the Redis database
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -51,6 +54,7 @@ spec:
           ports:
             - containerPort: 6379
 ---
+# Service for the Redis database
 apiVersion: v1
 kind: Service
 metadata:
