@@ -1,11 +1,3 @@
-# ConfigMap for the Flask image tag
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: flask-config
-data:
-  tag: <1.4>
----
 # Deployment for the Flask app
 apiVersion: apps/v1
 kind: Deployment
