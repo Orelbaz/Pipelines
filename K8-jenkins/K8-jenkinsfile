@@ -30,7 +30,7 @@ pipeline {
         stage('Test-server') {
             steps {
                 sh 'echo "Running tests..."'
-                sh "/bin/bash ${MY_PATH}K8-jenkins/Testing.sh ${TAG}"
+                sh "/bin/bash ${MY_PATH}K8-jenkins/Testing.sh"
             }
         }
         stage('Aprove') {

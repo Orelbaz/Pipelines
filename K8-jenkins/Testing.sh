@@ -1,6 +1,5 @@
 #!/bin/bash
 
-TAG=$1
 INSTANCE_NAME="test"
 PROJECT_ID="gke-first-393008"
 ZONE="us-central1-c"
