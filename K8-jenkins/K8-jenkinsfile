@@ -15,8 +15,7 @@ pipeline {
             steps {
                 sh 'echo "Cloning repository..."'
                 sh 'git clone https://github.com/Orelbaz/Jenkins.git'
-                sh 'ls'
-                sh 'echo "Dockring..."'
+                //Dockring...
                 dir(MY_PATH + 'K8-jenkins/CoinSite') {
                     script {
                         // Extract the TAG variable from .env file
