@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTANCE_NAME="test"
+INSTANCE_NAME="k8-test"
 PROJECT_ID="gke-first-393008"
 ZONE="us-central1-c"
 
