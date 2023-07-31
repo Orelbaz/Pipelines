@@ -8,7 +8,7 @@ pipeline {
             steps {
                 //cleanup
                 sh 'rm -rf *'
-                sh 'docker rmi $(docker images -q orelbaz/coinsitek8)'
+                sh 'docker images -q orelbaz/coinsitek8 | xargs -r docker rmi'
             }
         }
         stage('Build') {
