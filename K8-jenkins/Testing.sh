@@ -6,8 +6,8 @@ ZONE="us-central1-c"
 
 
 echo 'Copying docker-compose.yml + .env to instance...'
-gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/docker-compose.yml $INSTANCE_NAME:/tmp/docker-compose.yml --project=$PROJECT_ID --zone=$ZONE
-gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/.env $INSTANCE_NAME:/tmp/.env --project=$PROJECT_ID --zone=$ZONE
+gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/docker-compose.yml $INSTANCE_NAME:/home/jenkins/docker-compose.yml --project=$PROJECT_ID --zone=$ZONE
+gcloud compute scp /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins/CoinSite/.env $INSTANCE_NAME:/home/jenkins/.env --project=$PROJECT_ID --zone=$ZONE
 
 
 gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE $INSTANCE_NAME \
@@ -19,7 +19,7 @@ sudo curl -L 'https://github.com/docker/compose/releases/latest/download/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 sudo systemctl enable docker
 sudo systemctl start docker
-cd /tmp
+cd /home/jenkins
 sudo docker-compose down
 sudo docker rmi \$(sudo docker images -q orelbaz/coinsitek8)
 sudo docker-compose up -d
