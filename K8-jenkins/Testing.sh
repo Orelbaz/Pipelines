@@ -9,17 +9,19 @@ gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --
 cd /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins
 sed "s/\${TAG}/$TAG/g" my-app.yaml | kubectl apply -f -
 
+if [[$2 == eks-test]]; then
 
-# Get test instance's IP
-INSTANCE_IP=$(gcloud compute instances describe $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+    EXTERNAL_IP=$(kubectl get service flask-service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
-# Test the http status
-http_response=$(curl -s -o /dev/null -w "%{http_code}" ${INSTANCE_IP}:5000)
+    # Test the http status
+    http_response=$(curl -s -o /dev/null -w "%{http_code}" ${EXTERNAL-IP}:80)
 
-if [[ $http_response == 200 ]]; then
-    echo "Flask app returned a 200 status code. Test passed!"
-else
-    echo "Flask app returned a non-200 status code: $http_response. Test failed!"
-    exit 1
+    if [[ $http_response == 200 ]]; then
+        echo "Flask app returned a 200 status code. Test passed!"
+    else
+        echo "Flask app returned a non-200 status code: $http_response. Test failed!"
+        exit 1
+    fi
 fi
+
 
