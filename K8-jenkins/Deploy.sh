@@ -7,7 +7,8 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --zone us-central1-c
 
 cd /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins
-sed "s/\${TAG}/$TAG/g" my-app.yaml | kubectl apply -f -
+helm package .
+helm install Stock-site Stock-site-chart-0.1.0.tgz
 
 if [[$2 == eks-test]]; then
 
