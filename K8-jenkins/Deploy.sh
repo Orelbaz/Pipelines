@@ -8,8 +8,17 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --zone us-central1-c
 
 cd ${MY_PATH}K8-jenkins/Helm-chart
-helm package .
-helm install stock-site Stock-site-chart-0.2.0.tgz
+
+if helm list | grep -q -i "stock-site"; then
+    echo 'Chart already installed'
+    echo 'Performing upgrade...'
+    helm upgrade stocksite stocksite-0.2.0.tgz
+else
+    echo 'Installing the chart...'
+    helm install stocksite stocksite-0.2.0.tgz
+fi
+
+
 
 if [[ $2 == "eks-test" ]]; then
 
@@ -21,7 +30,7 @@ if [[ $2 == "eks-test" ]]; then
     if [[ $http_response == 200 ]]; then
         echo "Flask app returned a 200 status code. Test passed!"
         echo "Uploading Helm chart to the Google Cloud Storage bucket"
-        gsutil cp ${MY_PATH}K8-jenkins/Helm-chart/Stock-site-chart-0.2.0.tgz gs://stock-site
+        gsutil cp ${MY_PATH}K8-jenkins/Helm-chart/stock-site-0.2.0.tgz gs://stock-site
     else
         echo "Flask app returned a non-200 status code: $http_response. Test failed!"
         exit 1

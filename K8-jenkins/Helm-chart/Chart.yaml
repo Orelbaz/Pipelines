@@ -1,5 +1,5 @@
 # Chart.yaml
 apiVersion: v2
-name: Stock-site-chart
+name: stock-site
 version: 0.2.0
 description: A Helm chart for deploying Flask app and Redis database.
