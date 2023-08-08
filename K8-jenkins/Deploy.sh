@@ -9,7 +9,7 @@ gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --
 
 cd ${MY_PATH}K8-jenkins/Helm-chart
 helm package .
-helm install Stock-Site Stock-site-chart-0.1.0.tgz
+helm install stock-site Stock-site-chart-0.1.0.tgz
 
 if [[$2 == eks-test]]; then
 
