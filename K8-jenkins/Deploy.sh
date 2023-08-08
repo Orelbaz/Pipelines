@@ -11,7 +11,7 @@ cd ${MY_PATH}K8-jenkins/Helm-chart
 helm package .
 helm install stock-site Stock-site-chart-0.1.0.tgz
 
-if [[$2 == "eks-test"]]; then
+if [[ $2 == "eks-test" ]]; then
 
     EXTERNAL_IP=$(kubectl get service flask-service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
