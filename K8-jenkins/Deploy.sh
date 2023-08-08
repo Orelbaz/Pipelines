@@ -12,10 +12,11 @@ cd ${MY_PATH}K8-jenkins/Helm-chart
 if helm list | grep -q -i "stock-site"; then
     echo 'Chart already installed'
     echo 'Performing upgrade...'
-    helm upgrade stocksite stocksite-0.2.0.tgz
+    helm upgrade stock-site stock-site-0.2.0.tgz
 else
+    helm package .
     echo 'Installing the chart...'
-    helm install stocksite stocksite-0.2.0.tgz
+    helm install stock-site stoc-ksite-0.2.0.tgz
 fi
 
 
