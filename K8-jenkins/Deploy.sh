@@ -16,7 +16,7 @@ if [[$2 == eks-test]]; then
     EXTERNAL_IP=$(kubectl get service flask-service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
     # Test the http status
-    http_response=$(curl -s -o /dev/null -w "%{http_code}" ${EXTERNAL-IP}:80)
+    http_response=$(curl -s -o /dev/null -w "%{http_code}" ${EXTERNAL_IP}:80)
 
     if [[ $http_response == 200 ]]; then
         echo "Flask app returned a 200 status code. Test passed!"
