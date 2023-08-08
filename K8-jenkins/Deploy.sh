@@ -8,7 +8,7 @@ gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --
 
 cd /var/lib/jenkins/workspace/K8-pipeline/Jenkins/K8-jenkins
 helm package .
-helm install Stock-site Stock-site-chart-0.1.0.tgz
+helm install Stock-Site Stock-site-chart-0.1.0.tgz
 
 if [[$2 == eks-test]]; then
 
@@ -19,6 +19,7 @@ if [[$2 == eks-test]]; then
 
     if [[ $http_response == 200 ]]; then
         echo "Flask app returned a 200 status code. Test passed!"
+        gsutil cp Stock-site-0.1.0.tgz gs://stock-site
     else
         echo "Flask app returned a non-200 status code: $http_response. Test failed!"
         exit 1
