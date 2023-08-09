@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("gke-Key.json")
+  credentials = file("/home/or/Desktop/PrivateKeys/gke-Key.json")
   project     = "gke-first-393008"
   region      = "us-central1"
 }

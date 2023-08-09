@@ -44,5 +44,11 @@ pipeline {
                 sh "/bin/bash ${MY_PATH}K8-jenkins/Deploy.sh ${TAG} eks-prod ${MY_PATH}"
             }
         }
+        stage('Monitoring') {
+            steps {
+                sh 'echo "Running tests..."'
+                sh "/bin/bash ${MY_PATH}K8-jenkins/Prometheus.sh"
+            }
+        }
     }
 }
