@@ -1,7 +1,0 @@
-server:
-  global:
-    scrape_interval: 10s
-alertmanager:
-  enabled: true
-persistence:
-  enabled: true
