@@ -16,7 +16,7 @@ if helm list | grep -q -i "stock-site"; then
     helm upgrade stock-site stock-site-0.2.0.tgz
 else
     echo 'Installing the chart...'
-    helm install stock-site stoc-ksite-0.2.0.tgz
+    helm install stock-site stock-site-0.2.0.tgz
 fi
 
 
