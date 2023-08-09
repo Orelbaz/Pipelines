@@ -20,7 +20,6 @@ else
 fi
 
 
-
 if [[ $2 == "eks-test" ]]; then
 
     EXTERNAL_IP=$(kubectl get service flask-service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
