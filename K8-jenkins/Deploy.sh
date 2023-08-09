@@ -4,20 +4,34 @@ TAG=$1
 CLUSTER=$2
 MY_PATH=$3
 
+
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --zone us-central1-c
 
-cd ${MY_PATH}K8-jenkins/Helm-chart
-helm package .
 
-if helm list | grep -q -i "stock-site"; then
-    echo 'Chart already installed'
-    echo 'Performing upgrade...'
-    helm upgrade stock-site stock-site-0.2.0.tgz
-else
-    echo 'Installing the chart...'
-    helm install stock-site stock-site-0.2.0.tgz
-fi
+if [[ $CLUSTER == "eks-test" ]]; then
+    cd ${MY_PATH}K8-jenkins/Helm-chart
+    helm package .
+
+    if helm list | grep -q -i "stock-site"; then
+        echo 'Chart already installed'
+        echo 'Performing upgrade...'
+        helm upgrade stock-site stock-site-0.2.0.tgz
+    else
+        echo 'Installing the chart...'
+        helm install stock-site stock-site-0.2.0.tgz
+    fi
+
+
+if [[ $CLUSTER == "eks-prod" ]]; then
+    if helm list | grep -q -i "stock-site"; then
+        echo 'Chart already installed'
+        echo 'Performing upgrade...'
+        helm upgrade stock-site stock-site-0.2.0.tgz
+    else
+        echo 'Installing the chart...'
+        helm install stock-site stock-site-0.2.0.tgz
+    fi
 
 
 if [[ $2 == "eks-test" ]]; then
