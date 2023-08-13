@@ -1,8 +1,8 @@
-K8s Pipeline
+### K8s Pipeline
  This project automates the deployment process using Jenkins, Git, Docker, and Kubernetes to manage changes to the application and ensure a smooth transition to the production environment.
-Description
+## Description
 The project is a CI/CD pipeline that automates the application deployment process. It integrates Jenkins, Terraform, Docker, and Kubernetes to enable automatic updates to the application when new commits are made to the GitHub repository. This ensures a streamlined development workflow and minimizes the chances of errors during deployment.
-How Does It Work
+## How Does It Work
 The project follows a three-stage process to automate the deployment workflow:
 1.	Infrastructure Provisioning with Terraform:
 •	Terraform is used to create and manage two Kubernetes clusters on Google Cloud: one for staging and one for production.
@@ -17,7 +17,7 @@ The project follows a three-stage process to automate the deployment workflow:
 •	Automated tests are run on the staging environment to verify the application's functionality and stability.
 •	If the tests pass successfully, the pipeline proceeds to apply the changes to the production Kubernetes cluster.
 •	The application is now successfully deployed to the production environment.
-Running the Project
+## Running the Project
 To run this project, follow these steps:
 1.	Provision the Kubernetes Clusters with Terraform:
 •	Navigate to the terraform/ directory and follow the instructions in the README to create the Kubernetes clusters for staging and production environments on Google Cloud.
