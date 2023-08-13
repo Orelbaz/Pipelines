@@ -3,6 +3,10 @@ pipeline {
     environment {
         MY_PATH = '/var/lib/jenkins/workspace/K8-pipeline/Jenkins/'
     }
+    triggers {
+    // Checking for commits on GitHub every minute
+    pollSCM('* * * * *')
+    }
     stages {
         stage('Cleanup') {
             steps {
