@@ -14,7 +14,7 @@ The project follows a three-stage process to automate the deployment workflow:
 •	The pipeline builds Docker images and pushes them to Docker Hub for easy access.
 •	Terraform applies the changes to the staging Kubernetes cluster first, allowing for testing and validation.
 4.	Testing and Deployment:
-•	Automated tests are run on the staging environment to verify the application's functionality and stability.
+•	Automated tests are run on the testing environment to verify the application's functionality and stability.
 •	If the tests pass successfully, the pipeline proceeds to apply the changes to the production Kubernetes cluster.
 •	The application is now successfully deployed to the production environment.
 ## Running the Project
