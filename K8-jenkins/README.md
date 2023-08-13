@@ -21,13 +21,13 @@ The project follows a three-stage process to automate the deployment workflow:
 
 To run this project, follow these steps:
 1.	Provision the Kubernetes Clusters with Terraform:
-•	Navigate to the terraform/ directory and follow the instructions in the README to create the Kubernetes clusters for staging and production environments on Google Cloud.
+•	Navigate to the Terraform/ directory and create the Kubernetes clusters for testing and production environments on Google Cloud.
 2.	Configure Jenkins:
 •	Install the required Jenkins plugins for Kubernetes, Docker, and GitHub integration.
 •	Configure Jenkins to have access to your Docker Hub account to push Docker images.
 •	Set up Jenkins credentials for your Google Cloud Platform service account to manage Kubernetes clusters.
 3.	Customize the Kubernetes Manifests:
-•	Customize the Kubernetes manifests located in the kubernetes/ directory according to your application's requirements.
+•	Customize the Kubernetes manifests located in the Helm-chart/ directory according to your application's requirements.
 4.	Update Jenkinsfile:
 •	Adjust the Jenkinsfile to match your repository name and branch configuration.
 5.	Commit and push changes to the GitHub repository.
