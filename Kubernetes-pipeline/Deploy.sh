@@ -33,7 +33,6 @@ if [[ $CLUSTER == "eks-test" ]]; then
     if [[ $http_response == 200 ]]; then
         echo "Flask app returned a 200 status code. Test passed!"
         echo "Uploading Helm chart to the Google Cloud Storage bucket"
-        gsutil cp ${MY_PATH}Kubernetes-pipeline/Helm-chart/stock-site-${BUILD_NUMBER}.0.tgz gs://stock-site
     else
         echo "Flask app returned a non-200 status code: $http_response. Test failed!"
         exit 1
