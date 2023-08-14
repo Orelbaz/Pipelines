@@ -1,9 +1,0 @@
-[Unit]
-Description=Flask Web Application
-After=network.target
-[Service]
-ExecStart=/usr/bin/python3 -m flask run --host=0.0.0.0
-WorkingDirectory=/Sela-course/alpaca-flask/
-Environment=FLASK_ENV=production
-[Install]
-WantedBy=multi-user.target
