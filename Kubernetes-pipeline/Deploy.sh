@@ -19,7 +19,7 @@ if [[ $CLUSTER == "eks-test" ]]; then
     if helm list | grep -q -i "stock-site"; then
         echo 'Chart already installed'
         echo 'Performing upgrade...'
-        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz
+        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz --reuse-values -f values.yaml
     else
         echo 'Installing the chart...'
         helm install stock-site stock-site-${BUILD_NUMBER}.0.tgz
@@ -48,7 +48,7 @@ if [[ $CLUSTER == "eks-prod" ]]; then
     if helm list | grep -q -i "stock-site"; then
         echo 'Chart already installed'
         echo 'Performing upgrade...'
-        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz
+        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz --reuse-values -f values.yaml
     else
         echo 'Installing the chart...'
         helm install stock-site stock-site-${BUILD_NUMBER}.0.tgz
