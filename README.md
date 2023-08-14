@@ -2,7 +2,7 @@
 
 Welcome to the documentation for our project pipelines. We have four main pipelines in this project, each serving a specific purpose and technology stack.
 
-## 🚀 Main Pipeline: Kubernetes Deployment
+## 🚀 Main Pipeline: Kubernetes pipeline
 
 Our primary pipeline leverages Kubernetes for deployment. It allows us to efficiently manage and scale our application in a containerized environment.
 
