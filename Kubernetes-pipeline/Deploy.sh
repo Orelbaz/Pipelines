@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TAG=$1
+BUILD_NUMBER=$1
 CLUSTER=$2
 MY_PATH=$3
 
@@ -8,7 +8,9 @@ MY_PATH=$3
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --zone us-central1-c
 
+
 cd ${MY_PATH}Kubernetes-pipeline/Helm-chart
+/bin/bash ${MY_PATH}Kubernetes-pipeline/Get_values.sh
 helm package .
 
 
