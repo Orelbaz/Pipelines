@@ -5,6 +5,8 @@
 The project is a CI/CD pipeline that automates the application deployment process. It integrates Jenkins, Terraform, Git, and Kubernetes to enable automatic updates to the application when new commits are made to the GitHub repository. This ensures a streamlined development workflow and minimizes the chances of errors during deployment.
 ## How Does It Work
 
+![Pipeline-Diagrama]{Assets/Diagram.png}
+
 The project follows a three-stage process to automate the deployment workflow:
 1.	Infrastructure Provisioning with Terraform:
 •	Terraform is used to create and manage two Kubernetes clusters on Google Cloud: one for staging and one for production.
