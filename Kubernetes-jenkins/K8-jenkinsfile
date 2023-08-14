@@ -19,7 +19,7 @@ pipeline {
                 sh 'echo "Cloning repository..."'
                 sh 'git clone https://github.com/Orelbaz/Jenkins.git'
                 //Dockring...
-                dir(MY_PATH + 'K8-jenkins/CoinSite') {
+                dir(MY_PATH + 'Kubernetes-pipeline/CoinSite') {
                     script {
                         // Extract the TAG variable from .env file
                         TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
@@ -33,7 +33,7 @@ pipeline {
         stage('Test-server') {
             steps {
                 sh 'echo "Running tests..."'
-                sh "/bin/bash ${MY_PATH}K8-jenkins/Deploy.sh ${TAG} eks-test ${MY_PATH}"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${TAG} eks-test ${MY_PATH}"
             }
         }
         stage('Aprove') {
@@ -45,13 +45,13 @@ pipeline {
         }
         stage('Prod-server') {
             steps {
-                sh "/bin/bash ${MY_PATH}K8-jenkins/Deploy.sh ${TAG} eks-prod ${MY_PATH}"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${TAG} eks-prod ${MY_PATH}"
             }
         }
         stage('Monitoring') {
             steps {
                 sh 'echo "Running tests..."'
-                sh "/bin/bash ${MY_PATH}K8-jenkins/Prometheus.sh eks-prod"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Prometheus.sh eks-prod"
             }
         }
     }
