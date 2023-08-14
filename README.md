@@ -9,10 +9,9 @@ Our primary pipeline leverages Kubernetes for deployment. It allows us to effici
 ### Features
 
 - Automated deployment to a Kubernetes cluster
-- Dynamic scaling based on resource utilization
-- Health checks and self-healing mechanisms
+- Automated testing of the application
+- Upload of the project to Google Cloud Storage bucket using Helm
 - Integration with monitoring and logging tools
-
 
 ## 🐳 Docker Pipeline
 
