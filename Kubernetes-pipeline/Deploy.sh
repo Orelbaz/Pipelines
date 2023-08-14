@@ -10,9 +10,6 @@ gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --
 
 
 cd ${MY_PATH}Kubernetes-pipeline/Helm-chart
-/bin/bash ${MY_PATH}Kubernetes-pipeline/Get_values.sh
-helm package .
-
 
 if [[ $CLUSTER == "eks-test" ]]; then
 
