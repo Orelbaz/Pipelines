@@ -20,7 +20,7 @@ pipeline {
                 sh 'echo "Cloning repository..."'
                 sh 'git clone https://github.com/Orelbaz/Pipelines.git'
                 sh 'echo "Running tests..."'
-                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${BUILD_NUMBER} ${MY_PATH}"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Build.sh ${BUILD_NUMBER} ${MY_PATH}"
             }
         }
         stage('Test-server') {
