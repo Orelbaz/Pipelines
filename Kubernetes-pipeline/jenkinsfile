@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         MY_PATH = '/var/lib/jenkins/workspace/K8s-pipeline/Pipelines/'
+        BUILD_NUMBER = "0.${env.BUILD_NUMBER}"
     }
     triggers {
     // Checking for commits on GitHub every minute
@@ -18,22 +19,14 @@ pipeline {
             steps {
                 sh 'echo "Cloning repository..."'
                 sh 'git clone https://github.com/Orelbaz/Pipelines.git'
-                //Dockring...
-                dir(MY_PATH + 'Kubernetes-pipeline/CoinSite') {
-                    script {
-                        // Extract the TAG variable from .env file
-                        TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
-                        // Build and push the Docker image....
-                        sh "docker build --build-arg TAG=${TAG} -t orelbaz/coinsitek8s:${TAG} ."
-                        sh "docker push orelbaz/coinsitek8s:${TAG}"
-                    }
-                }
+                sh 'echo "Running tests..."'
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${BUILD_NUMBER} ${MY_PATH}"
             }
         }
         stage('Test-server') {
             steps {
                 sh 'echo "Running tests..."'
-                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${TAG} eks-test ${MY_PATH}"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${BUILD_NUMBER} eks-test ${MY_PATH}"
             }
         }
         stage('Aprove') {
@@ -45,7 +38,7 @@ pipeline {
         }
         stage('Prod-server') {
             steps {
-                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${TAG} eks-prod ${MY_PATH}"
+                sh "/bin/bash ${MY_PATH}Kubernetes-pipeline/Deploy.sh ${BUILD_NUMBER} eks-prod ${MY_PATH}"
             }
         }
         stage('Monitoring') {
