@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MY_PATH = '/var/lib/jenkins/workspace/K8-pipeline/Jenkins/'
+        MY_PATH = '/var/lib/jenkins/workspace/K8s-pipeline/Pipelines/'
     }
     triggers {
     // Checking for commits on GitHub every minute
@@ -17,15 +17,15 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Cloning repository..."'
-                sh 'git clone https://github.com/Orelbaz/Jenkins.git'
+                sh 'git clone https://github.com/Orelbaz/Pipelines.git'
                 //Dockring...
                 dir(MY_PATH + 'Kubernetes-pipeline/CoinSite') {
                     script {
                         // Extract the TAG variable from .env file
                         TAG = sh(script: "cat .env | grep TAG | cut -d '=' -f2", returnStdout: true).trim()
                         // Build and push the Docker image....
-                        sh "docker build --build-arg TAG=${TAG} -t orelbaz/coinsitek8:${TAG} ."
-                        sh "docker push orelbaz/coinsitek8:${TAG}"
+                        sh "docker build --build-arg TAG=${TAG} -t orelbaz/coinsitek8s:${TAG} ."
+                        sh "docker push orelbaz/coinsitek8s:${TAG}"
                     }
                 }
             }

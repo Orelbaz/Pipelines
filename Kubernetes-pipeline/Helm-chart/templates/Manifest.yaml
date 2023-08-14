@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: orelbaz/coinsitek8:{{ .Values.TAG }}
+          image: orelbaz/coinsitek8s:{{ .Values.TAG }}
           ports:
             - containerPort: 5000
 ---
