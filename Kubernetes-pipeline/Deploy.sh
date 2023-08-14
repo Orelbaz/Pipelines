@@ -11,6 +11,7 @@ gcloud container clusters get-credentials --project gke-first-393008 $CLUSTER --
 
 cd ${MY_PATH}Kubernetes-pipeline/Helm-chart
 
+
 if [[ $CLUSTER == "eks-test" ]]; then
 
     if helm list | grep -q -i "stock-site"; then
