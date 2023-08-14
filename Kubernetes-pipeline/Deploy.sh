@@ -19,10 +19,10 @@ if [[ $CLUSTER == "eks-test" ]]; then
     if helm list | grep -q -i "stock-site"; then
         echo 'Chart already installed'
         echo 'Performing upgrade...'
-        helm upgrade stock-site stock-site-0.${BUILD_NUMBER}.0.tgz
+        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz
     else
         echo 'Installing the chart...'
-        helm install stock-site stock-site-0.${BUILD_NUMBER}.0.tgz
+        helm install stock-site stock-site-${BUILD_NUMBER}.0.tgz
     fi
 
     sleep 30
@@ -35,7 +35,7 @@ if [[ $CLUSTER == "eks-test" ]]; then
     if [[ $http_response == 200 ]]; then
         echo "Flask app returned a 200 status code. Test passed!"
         echo "Uploading Helm chart to the Google Cloud Storage bucket"
-        gsutil cp ${MY_PATH}Kubernetes-pipeline/Helm-chart/stock-site-0.${BUILD_NUMBER}.0.tgz gs://stock-site
+        gsutil cp ${MY_PATH}Kubernetes-pipeline/Helm-chart/stock-site-${BUILD_NUMBER}.0.tgz gs://stock-site
     else
         echo "Flask app returned a non-200 status code: $http_response. Test failed!"
         exit 1
@@ -48,10 +48,10 @@ if [[ $CLUSTER == "eks-prod" ]]; then
     if helm list | grep -q -i "stock-site"; then
         echo 'Chart already installed'
         echo 'Performing upgrade...'
-        helm upgrade stock-site stock-site-0.${BUILD_NUMBER}.0.tgz
+        helm upgrade stock-site stock-site-${BUILD_NUMBER}.0.tgz
     else
         echo 'Installing the chart...'
-        helm install stock-site stock-site-0.${BUILD_NUMBER}.0.tgz
+        helm install stock-site stock-site-${BUILD_NUMBER}.0.tgz
     fi
     sleep 15
 fi
