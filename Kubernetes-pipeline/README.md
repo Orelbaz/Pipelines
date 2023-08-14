@@ -1,5 +1,7 @@
 # K8s Pipeline
 
+## Description
+
 The project is a CI/CD pipeline that automates the application deployment process. It integrates Jenkins, Terraform, Git, and Kubernetes to enable automatic updates to the application when new commits are made to the GitHub repository. This ensures a streamlined development workflow and minimizes the chances of errors during deployment.
 ## How Does It Work
 
