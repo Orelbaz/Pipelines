@@ -23,7 +23,7 @@ if [[ $CLUSTER == "eks-test" ]]; then
         helm install stock-site stock-site-${BUILD_NUMBER}.0.tgz
     fi
 
-    sleep 30
+    sleep 60
 
     EXTERNAL_IP=$(kubectl get service flask-service -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
 
