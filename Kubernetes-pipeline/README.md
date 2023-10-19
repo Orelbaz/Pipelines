@@ -41,3 +41,5 @@ To run this project, follow these steps:
 8.	Visit the application on the production URL to verify the successful deployment.
 Please note that provisioning the Kubernetes clusters with Terraform may take some time, so ensure that the clusters are up and running before starting the CI/CD pipeline to avoid any issues.
 
+###
+
